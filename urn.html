@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<meta charset="utf-8">
+	<head>
+		<title>Eleições 2022</title>
+
+		<style type="text/css">
+			body{
+				display: grid;
+				grid-template-rows: 1fr;
+				grid-template-columns: 7fr 2fr;
+				grid-template-areas: 
+				'u l';
+				background: #000;
+				font-family: monospace;
+			}
+			.urn{
+				display: grid;
+				grid-template-rows: 1fr 8fr 1.5fr;
+				grid-template-columns: 5fr 3fr;
+				grid-template-areas: 
+				't t'
+				's b'
+				'o c';
+				grid-area: u;
+				background: #EEA;
+				height: 86vh;
+				width: 78vw;
+				margin: auto -0.4%;
+				align-items: center;
+			}
+			#view1{
+				background: #EEA;
+				height: 100%;
+				width: 100%;
+				grid-area: t;
+				margin: 0 auto;
+				text-align: center;
+				font-size: 250%;
+			}
+			#view2{
+				display: grid;
+				grid-template-rows: 1fr 1fr;
+				grid-template-columns: 5fr 2.5fr;
+				grid-template-areas: 
+				'tv ph'
+				'vv ph';
+				background: #000;
+				height: 99%;
+				width: 95%;
+				grid-area: s;
+				margin: 0 auto;
+				font-family: monospace;
+				color: #FFF;
+				border-radius: 1rem;
+			}
+			#view3{
+				display: grid;
+				grid-template-rows: 1fr 1fr 1fr 1fr;
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-areas: 
+				'um ds ts'
+				'qt cc ss'
+				'st ot nv'
+				'.. zr ..';
+				background: #090909;
+				height: 99%;
+				width: 95%;
+				grid-area: b;
+				margin: 0 auto;
+				border-radius: 1rem;
+			}
+			#view4{
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-areas: 
+				'br ca co';
+				background: #EEA;
+				height: 99%;
+				width: 100%;
+				grid-area: c;
+				margin: 0 auto;
+			}
+			#view5{
+				background: #000;
+				height: 80%;
+				width: 60%;
+				grid-area: o;
+				margin: 0 auto;
+				color: #FFF;
+				text-align: center;
+				font-size: 120%;
+				border-radius: 1rem;
+			}
+
+
+			.numButton{
+				font-size: 280%;
+				height: 90%;
+				width: 90%;
+				margin: auto auto;
+				background: #000;
+				border-style: solid;
+				border-width: 1%;
+				border-color: #FFF;
+				color: #FFF;
+				border-radius: 1rem;
+			}
+				#numButton0{
+					grid-area: zr;
+				}
+				#numButton1{
+					grid-area: um;
+				}
+				#numButton2{
+					grid-area: ds;
+				}
+				#numButton3{
+					grid-area: ts;
+				}
+				#numButton4{
+					grid-area: qt;
+				}
+				#numButton5{
+					grid-area: cc;
+				}
+				#numButton6{
+					grid-area: ss;
+				}
+				#numButton7{
+					grid-area: st;
+				}
+				#numButton8{
+					grid-area: ot;
+				}
+				#numButton9{
+					grid-area: nv;
+				}
+
+			.actButton{
+				font-size: 110%;
+				height: 60%;
+				width: 90%;
+				margin: auto auto;
+				text-align: center;
+				border-style: solid;
+				border-width: 1%;
+				border-color: #000;
+				border-radius: 0.5rem;
+			}
+				#actButtonBR{
+					grid-area: br;
+					background: #F4F4F4;
+				}
+				#actButtonCA{
+					grid-area: ca;
+					background: #EB0505;
+				}
+				#actButtonCO{
+					grid-area: co;
+					background: #00CA00;
+				}
+
+			#photo{
+				grid-area: ph;
+				height: 95%;
+				width: 90%;
+				margin: auto auto;
+			}
+			#cndFigure1,#cndFigure2{
+				background: black;
+				width: 70%;
+				height: 48%;
+				margin: 2% 28%;
+				color: white;
+				text-align: right;
+			}
+			.cndImage{
+				height: auto;
+				width: 180%;
+			}
+				#cnd1{
+					width: 140%;
+					margin: 1% 0% 0% -40%;
+				}
+				#cnd2{
+					width: 126%;
+					margin: 8% 0% 0% -34%;
+				}
+
+			#typeVT{
+				grid-area: tv;
+				height: 90%;
+				width: 90%;
+				margin: auto auto;
+				background: #000;
+			}
+			#type{
+				font-size: 150%;
+				text-align: left;
+				padding: 12% 30%;
+			}
+			#vtValues{
+				grid-area: vv;
+				height: 90%;
+				width: 90%;
+				margin: auto auto;
+				justify-items: center;
+				background: #000;
+				line-height: 180%;
+				display: inline;
+			}
+			.cndInfo{
+				font-size: 150%;
+				text-align: left;
+				padding: 0 0 0 4%;
+				display: inline;
+			}
+			.nVT{
+				font-size: 100%;
+				text-align: left;
+				padding: 180% 0% 0% 10%;
+				display: inline;
+				margin-left: -12%;
+				color: #FFF;
+			}
+
+			.list{
+				grid-area: l;
+			}
+			.cndList,.cndListRow1,.cndListRow2{
+				border: 1px solid black;
+				border-collapse: collapse;
+				text-align: left;
+			}
+			.cndList{
+				width: 100%;
+				height: auto;
+			}
+			td{
+				width: 36%;
+				height: auto;
+			}
+			#cndListRowTitle{
+				background: white;
+			}
+			.cndListRow1{
+				background: lightgray;
+			}
+			.cndListRow2{
+				background: darkgray;
+			}
+		</style>
+
+	</head>
+	<body onload="clr();">
+		<div class="urn">
+			<div class="screen" id="view1">Urna eletrônica 2022 ONLINE</div>
+			<div class="screen" id="view2">
+				<div class="screen" id="typeVT">
+					<p id="type"></p>
+				</div>
+				<div class="screen" id="photo">
+					<figure class="screen" id="cndFigure1">
+						<img class="cndImage" id="cnd1" src="">
+						<figcaption id="cndCap1"></figcaption>
+					</figure>
+					<figure class="screen" id="cndFigure2">
+						<img class="cndImage" id="cnd2" src="">
+						<figcaption id="cndCap2"></figcaption>
+					</figure>
+				</div>
+				<div class="screen" id="vtValues">
+					<br/><br/>
+					<div class="cndInfo">
+						Número:
+						<div class="nVT" id="nVT1"></div>
+						<div class="nVT" id="nVT2"></div>
+						<div class="nVT" id="nVT3"></div>
+						<div class="nVT" id="nVT4"></div>
+						<div class="nVT" id="nVT5"></div>
+					</div><br/>
+					<div class="cndInfo" id="cndName">Nome: ---</div><br/>
+					<div class="cndInfo" id="cndParty">Partido: ---</div><br/>
+					<div class="cndInfo" id="cndVice">Vice: ---</div>
+				</div>
+			</div>
+			<div class="screen" id="view3">
+				<button class="numButton" id="numButton0" onclick="prssd(0);">0</button>
+				<button class="numButton" id="numButton1" onclick="prssd(1);">1</button>
+				<button class="numButton" id="numButton2" onclick="prssd(2);">2</button>
+				<button class="numButton" id="numButton3" onclick="prssd(3);">3</button>
+				<button class="numButton" id="numButton4" onclick="prssd(4);">4</button>
+				<button class="numButton" id="numButton5" onclick="prssd(5);">5</button>
+				<button class="numButton" id="numButton6" onclick="prssd(6);">6</button>
+				<button class="numButton" id="numButton7" onclick="prssd(7);">7</button>
+				<button class="numButton" id="numButton8" onclick="prssd(8);">8</button>
+				<button class="numButton" id="numButton9" onclick="prssd(9);">9</button>
+			</div>
+			<div class="screen" id="view4">
+				<button class="actButton" id="actButtonBR" onclick="confirm(true);">BRANCO</button>
+				<button class="actButton" id="actButtonCA" onclick="clr();">CORRIGE</button>
+				<button class="actButton" id="actButtonCO" onclick="confirm();">CONFIRMA</button>
+			</div>
+			<div class="screen" id="view5"></div>
+		</div>
+
+		<div class="list">
+			<table class="cndList" id="df">
+				<caption class="cndListRow" id="cndListRowTitle">Deputado Federal</caption>
+				<tr class="cndListRow1">
+					<th>Candidato</th>
+					<th>Partido</th>
+					<th>Número</th>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Névoa Sombria</td>
+					<td>Herói do Elemento</td>
+					<td>8550</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Beiige</td>
+					<td>Mundo Negro</td>
+					<td>2733</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Latinum</td>
+					<td>Mundo Negro</td>
+					<td>2715</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Temporal</td>
+					<td>Dragão Soberano</td>
+					<td>2389</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Dakki</td>
+					<td>Mayakashi</td>
+					<td>1342</td>
+				</tr>
+			</table>
+			<table class="cndList" id="de">
+				<caption class="cndListRow" id="cndListRowTitle">Deputado Estadual</caption>
+				<tr class="cndListRow1">
+					<th>Candidato</th>
+					<th>Partido</th>
+					<th>Número</th>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Aviário</td>
+					<td>Herói do Elemento</td>
+					<td>85218</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Kahkki</td>
+					<td>Mundo Negro</td>
+					<td>27258</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Shafu</td>
+					<td>Mayakashi</td>
+					<td>13789</td>
+				</tr>
+			</table>
+			<table class="cndList" id="s1">
+				<caption class="cndListRow" id="cndListRowTitle">Senador</caption>
+				<tr class="cndListRow1">
+					<th>Candidato</th>
+					<th>Partido</th>
+					<th>Número</th>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Lenhador</td>
+					<td>Herói do Elemento</td>
+					<td>857</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Snoww</td>
+					<td>Mundo Negro</td>
+					<td>276</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Broww</td>
+					<td>Mundo Negro</td>
+					<td>277</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Redox</td>
+					<td>Dragão Soberano</td>
+					<td>239</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Tengu</td>
+					<td>Mayakashi</td>
+					<td>130</td>
+				</tr>
+			</table>
+			<table class="cndList" id="s2">
+				<caption class="cndListRow" id="cndListRowTitle">Senador</caption>
+				<tr class="cndListRow1">
+					<th>Candidato</th>
+					<th>Partido</th>
+					<th>Número</th>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Lenhador</td>
+					<td>Herói do Elemento</td>
+					<td>857</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Snoww</td>
+					<td>Mundo Negro</td>
+					<td>276</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Broww</td>
+					<td>Mundo Negro</td>
+					<td>277</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Redox</td>
+					<td>Dragão Soberano</td>
+					<td>239</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Tengu</td>
+					<td>Mayakashi</td>
+					<td>130</td>
+				</tr>
+			</table>
+			<table class="cndList" id="go">
+				<caption class="cndListRow" id="cndListRowTitle">Governador</caption>
+				<tr class="cndListRow1">
+					<th>Candidato</th>
+					<th>Partido</th>
+					<th>Número</th>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Homem Faísca</td>
+					<td>Herói do Elemento</td>
+					<td>85</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Luzente</td>
+					<td>Mundo Negro</td>
+					<td>27</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Maré</td>
+					<td>Dragão Soberano</td>
+					<td>23</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Yoko</td>
+					<td>Mayakashi</td>
+					<td>13</td>
+				</tr>
+			</table>
+			<table class="cndList" id="pr">
+				<caption class="cndListRow" id="cndListRowTitle">Presidente</caption>
+				<tr class="cndListRow1">
+					<th>Candidato</th>
+					<th>Partido</th>
+					<th>Número</th>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Neos</td>
+					<td>Herói do Elemento</td>
+					<td>85</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Grapha</td>
+					<td>Mundo Negro</td>
+					<td>27</td>
+				</tr>
+				<tr class="cndListRow2">
+					<td>Dinamite</td>
+					<td>Dragão Soberano</td>
+					<td>23</td>
+				</tr>
+				<tr class="cndListRow1">
+					<td>Gashadokuro</td>
+					<td>Mayakashi</td>
+					<td>13</td>
+				</tr>
+			</table>
+		</div>
+
+
+		<script type="text/javascript">
+			var sideScreen = document.getElementById("view2");
+			var bottomScreen = document.getElementById("view5");
+			var inf = [
+				document.getElementById("type"),
+				document.getElementById("cndName"),
+				document.getElementById("cndParty"),
+				document.getElementById("cndVice"),
+			];
+			var cndLg = [document.getElementById("cndFigure1"),document.getElementById("cndFigure2")];
+			var cndCp = [document.getElementById("cndCap1"),document.getElementById("cndCap2")];
+			var cndPh = [document.getElementById("cnd1"),document.getElementById("cnd2")];
+			var value = [
+				document.getElementById("nVT1"),
+				document.getElementById("nVT2"),
+				document.getElementById("nVT3"),
+				document.getElementById("nVT4"),
+				document.getElementById("nVT5"),
+			];
+			var tb = [
+				document.getElementById("df"),
+				document.getElementById("de"),
+				document.getElementById("s1"),
+				document.getElementById("s2"),
+				document.getElementById("go"),
+				document.getElementById("pr"),
+			];
+			var blocks = [
+				document.getElementById("typeVT"),
+				document.getElementById("vtValues"),
+				document.getElementById("photo"),
+			];
+			var op = [1,true];
+			var code = ['█','█','█','█','█'];
+			var vote = '';
+			var voteSeq = [];
+			var line = 0;
+			var step = 0;
+			function blink(){
+				if(op[0] >= 1){
+					op[1] = true;
+				}
+				if(op[0] <= 0.2){
+					op[1] = false;
+				}
+				if(op[1]){
+					op[0] -= 0.05
+				}
+				else{
+					op[0] += 0.05
+				}
+				try{
+					value[line].style.color = `rgba(255,255,255,${op[0]})`;
+				}
+				catch{}
+			}
+			function prssd(n){
+				if(!(line >= data[step].lenCode)){
+					code[line] = n;
+					value[line].innerHTML = code[line];
+					value[line].style.fontSize = `160%`;
+					value[line].style.color = `rgba(255,255,255,1)`;
+					line += 1;
+				}
+				let aux = [];
+				for(let n of code){
+					if(n != "█"){
+						aux.push(String(n));
+					}
+				}
+				vote = aux.toString();
+				for(let r = 0; r < 5; r++){
+					vote = vote.replace(',','');
+				}
+
+				for(let c of data[step].cnd){
+					//alert(`Code:${c.code} / Write:${vote}`)
+					if(c.code == vote){
+						updatePh(c.ph.url1,c.ph.caption1,c.ph.url2,c.ph.caption2);
+						inf[1].innerHTML = `Nome: ${c.name}`;
+						inf[2].innerHTML = `Partido: ${c.politicalParty}`;
+						inf[3].innerHTML = "";
+						bottomScreen.innerHTML = `Aperte 'CONFIRMA' para votar no candidato <br/>
+						Aperte 'CORRIGE' para re-digitar o número <br/>
+						Aperte 'BRANCO' para não votar em ninguém`;
+						cndLg[1].style.display = "none";
+						if(c.viceName != undefined){
+							inf[3].innerHTML = `Vice: ${c.viceName}`;
+							cndLg[1].style.display = "block";
+						}
+						cndLg[0].style.color = "#FFF";
+						cndLg[1].style.color = "#FFF";
+						cndCap1.style.display = "inline";
+						cndCap2.style.display = "inline";
+						break;
+					}
+				}
+			}
+			function reset(){
+				for(let x of value){
+					x.style.display = "none";
+				}
+				for(let a = 0; a < data[step].lenCode; a++){
+					value[a].style.display = "inline";
+				}
+				inf[0].innerHTML = `Seu voto para:<br/> <b>${data[step].office}</b>`;
+				bottomScreen.innerHTML = `Digite o número do candidato<br/>
+				Aperte 'CORRIGE' para re-digitar o número <br/>
+				Aperte 'BRANCO' para não votar em ninguém`;
+				op = [1,true];
+				code = ['█','█','█','█','█'];
+				line = 0;
+				vote = '';
+				cndPh[0].src = "";
+				cndPh[1].src = "";
+				cndCap1.style.display = "none";
+				cndCap2.style.display = "none";
+				inf[1].innerHTML = "Nome: ---";
+				inf[2].innerHTML = "Partido: ---";
+				inf[3].innerHTML = "Vice: ---";
+				tb[0].style.display = "none";
+				tb[1].style.display = "none";
+				tb[2].style.display = "none";
+				tb[3].style.display = "none";
+				tb[4].style.display = "none";
+				tb[5].style.display = "none";
+				tb[step].style.display = "inline-block";
+			}
+			function clr(){
+				if(step <= 5){
+					reset();
+					cndLg[0].style.color = "#000";
+					cndLg[1].style.color = "#000";
+					for(let z = 0; z < 5; z++){
+						value[z].style.color = "#FFF";
+						value[z].innerHTML = code[z];
+						value[z].style.fontSize = `100%`;
+					}
+				}
+				else{
+					alert("Finalizado:"+voteSeq);
+					for(let z = 0; z < 5; z++){
+						value[z].style.display = "none";
+						value[z].innerHTML = "";
+						value[z].style.fontSize = `100%`;
+					}
+					sideScreen.style.gridTemplateAreas = '"tv tv" "tv tv"';
+					inf[0].style.display = "inline-block"
+					inf[0].innerHTML = "Voto COMPUTADO!";
+					inf[0].style.textAlign = "center";
+					bottomScreen.innerHTML = "Obrigado por votar."
+					blocks[0].style.fontSize = "280%";
+					blocks[0].style.width = "100%";
+					blocks[0].style.height = "100%";
+					blocks[0].style.textAlign = "center";
+					blocks[1].style.display = "none";
+					blocks[2].style.display = "none";
+				}
+			}
+			function confirm(b=false){
+				if(step <= 5){
+					if(b){
+						voteSeq.push(undefined);
+					}
+					else{
+						for(let x of value){
+							x.style.display = "none";
+						}
+						for(let a = 0; a < data[step].lenCode; a++){
+							value[a].style.display = "inline";
+						}
+						if((step==3 && vote==voteSeq[step-1])||(cndPh[0].src.indexOf("Images")==-1)){
+							voteSeq.push(null);
+						}
+						else{
+							voteSeq.push(vote);
+						}
+					}
+					step += 1;
+					clr();
+				}
+			}
+			function updatePh(url1,cap1,url2="",cap2=""){
+				cndPh[0].src = url1;
+				cndCp[0].innerHTML = cap1;
+				cndPh[1].src = url2;
+				cndCp[1].innerHTML = cap2;
+			}
+			setInterval(blink,16);
+		</script>
+
+		<script type="text/javascript">
+			var data = [
+				{
+					office: "DEPUTADO FEDERAL",
+					lenCode: 4,
+					cnd: [
+						{
+							code: "8550",
+							name: "Névoa Sombria",
+							politicalParty: "Herói do Elemento",
+							ph:{
+								url1: "Images/PHE/nevoaSombria.jpg",
+								caption1: "Deputado Federal",
+							},
+						},
+						{
+							code: "2733",
+							name: "Beiige",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/beiige.jpg",
+								caption1: "Deputado Federal",
+							},
+						},
+						{
+							code: "2715",
+							name: "Latinum",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/latinum.jpg",
+								caption1: "Deputado Federal",
+							},
+						},
+						{
+							code: "2389",
+							name: "Temporal",
+							politicalParty: "Dragão Soberano",
+							ph:{
+								url1: "Images/PDS/temporal.jpg",
+								caption1: "Deputado Federal",
+							},
+						},
+						{
+							code: "1342",
+							name: "Dakki",
+							politicalParty: "Mayakashi",
+							ph:{
+								url1: "Images/PM/dakki.jpg",
+								caption1: "Deputado Federal",
+							},
+						},
+					]
+				},
+				{
+					office: "DEPUTADO ESTADUAL",
+					lenCode: 5,
+					cnd: [
+						{
+							code: "85218",
+							name: "Aviário",
+							politicalParty: "Herói do Elemento",
+							ph:{
+								url1: "Images/PHE/aviario.jpg",
+								caption1: "Deputado Estadual",
+							},
+						},
+						{
+							code: "27258",
+							name: "Kahkki",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/kahkki.jpg",
+								caption1: "Deputado Estadual",
+							},
+						},
+						{
+							code: "13789",
+							name: "Shafu",
+							politicalParty: "Mayakashi",
+							ph:{
+								url1: "Images/PM/shafu.jpg",
+								caption1: "Deputado Estadual",
+							},
+						},
+					]
+				},
+				{
+					office: "1º SENADOR",
+					lenCode: 3,
+					cnd: [
+						{
+							code: "857",
+							name: "Lenhador",
+							politicalParty: "Herói do Elemento",
+							ph:{
+								url1: "Images/PHE/lenhador.jpg",
+								caption1: "Senador",
+							},
+						},
+						{
+							code: "276",
+							name: "Snoww",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/snoww.jpg",
+								caption1: "Senador",
+							},
+						},
+						{
+							code: "277",
+							name: "Broww",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/broww.jpg",
+								caption1: "Senador",
+							},
+						},
+						{
+							code: "239",
+							name: "Redox",
+							politicalParty: "Dragão Soberano",
+							ph:{
+								url1: "Images/PDS/redox.jpg",
+								caption1: "Senador",
+							},
+						},
+						{
+							code: "130",
+							name: "Tengu",
+							politicalParty: "Mayakashi",
+							ph:{
+								url1: "Images/PM/tengu.jpg",
+								caption1: "Senador",
+							},
+						},
+					]
+				},
+				{
+					office: "2º SENADOR",
+					lenCode: 3,
+					cnd: [
+						{
+							code: "857",
+							name: "Lenhador",
+							politicalParty: "Herói do Elemento",
+							ph:{
+								url1: "Images/PHE/lenhador.jpg",
+								caption1: "Senador",
+							},
+						},
+						{
+							code: "276",
+							name: "Snoww",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/snoww.jpg",
+								caption1: "Senador",
+							},
+						},
+						{
+							code: "277",
+							name: "Broww",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/broww.jpg",
+								caption1: "Senador",
+							},
+						},
+						{
+							code: "239",
+							name: "Redox",
+							politicalParty: "Dragão Soberano",
+							ph:{
+								url1: "Images/PDS/redox.jpg",
+								caption1: "Senador",
+							},
+						},
+						{
+							code: "130",
+							name: "Tengu",
+							politicalParty: "Mayakashi",
+							ph:{
+								url1: "Images/PM/tengu.jpg",
+								caption1: "Senador",
+							},
+						},
+					]
+				},
+				{
+					office: "GOVERNADOR",
+					lenCode: 2,
+					cnd: [
+						{
+							code: "85",
+							name: "Homem Faísca",
+							politicalParty: "Herói do Elemento",
+							ph:{
+								url1: "Images/PHE/homemFaisca.jpg",
+								caption1: "Governador",
+							},
+						},
+						{
+							code: "27",
+							name: "Luzente",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/luzente.jpg",
+								caption1: "Governador",
+							},
+						},
+						{
+							code: "23",
+							name: "Maré",
+							politicalParty: "Dragão Soberano",
+							ph:{
+								url1: "Images/PDS/mare.jpg",
+								caption1: "Deputado Federal",
+							},
+						},
+						{
+							code: "13",
+							name: "Yoko",
+							politicalParty: "Mayakashi",
+							ph:{
+								url1: "Images/PM/yoko.jpg",
+								caption1: "Governador",
+							},
+						},
+					]
+				},
+				{
+					office: "PRESIDENTE",
+					lenCode: 2,
+					cnd: [
+						{
+							code: "85",
+							name: "Neos",
+							viceName: "Neos Alius",
+							politicalParty: "Herói do Elemento",
+							ph:{
+								url1: "Images/PHE/neos.jpg",
+								caption1: "Presidente",
+								url2: "Images/PHE/neosAlius.jpg",
+								caption2: "Vice-Presidente",
+							},
+						},
+						{
+							code: "27",
+							name: "Grapha",
+							viceName: "Sillva",
+							politicalParty: "Mundo Negro",
+							ph:{
+								url1: "Images/PMN/grapha.jpg",
+								caption1: "Presidente",
+								url2: "Images/PMN/sillva.jpg",
+								caption2: "Vice-Presidente",
+							},
+						},
+						{
+							code: "23",
+							name: "Dinamite",
+							viceName: "Chamusca",
+							politicalParty: "Dragão Soberano",
+							ph:{
+								url1: "Images/PDS/dinamite.jpg",
+								caption1: "Presidente",
+								url2: "Images/PDS/chamusca.jpg",
+								caption2: "Vice-Presidente",
+
+							},
+						},
+						{
+							code: "13",
+							name: "Gashadokuro",
+							viceName: "Yuki-Onna",
+							politicalParty: "Dragão Soberano",
+							ph:{
+								url1: "Images/PM/gashadokuro.jpg",
+								caption1: "Presidente",
+								url2: "Images/PM/yukiOnna.jpg",
+								caption2: "Vice-Presidente",
+
+							},
+						},
+					]
+				},
+			]
+		</script>
+
+	</body>
+</html>
+<!--
+
++ Voto de senador repetido é anulado;
+
+-->
